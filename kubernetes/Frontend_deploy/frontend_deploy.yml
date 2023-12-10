@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: frontend-app
+  template:
+    metadata:
+      labels:
+        name: frontend-app
+    spec:
+      containers:
+        - name: frontend-app-container
+          image: grahesht/jenkins_images:v2
+          ports:
+            - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend-app
+  labels:
+    app: frontend-app
+spec:
+  type: NodePort
+  ports:
+    - port: 80
+      targetPort: 80
+      protocol: TCP
+      nodePort: 30001
+  selector:
+    name: frontend-app

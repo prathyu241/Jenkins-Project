@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: api-gateway-config
+data:
+  API_GATEWAY: "54.171.96.180"
+  QUOTES_API: "http://quotes:5000"
